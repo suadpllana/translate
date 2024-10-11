@@ -7,9 +7,10 @@ const Translate = () => {
     const to = useRef(null)  
     const fromInput = useRef(null)
     const toInput = useRef(null) 
-
+    const [loading , setLoading] = useState(false)
    
         async function getData() {
+            setLoading(true)
             try {
             const url = 'https://deep-translate1.p.rapidapi.com/language/translate/v2';
             const options = {
@@ -30,11 +31,15 @@ const Translate = () => {
                 const response = await fetch(url, options);
                 const result = await response.json();
                 toInput.current.value = result.data.translations.translatedText
+                setLoading(false)
                 
             } catch (error) {
                 console.error(error);
             }
         }
+
+
+
       
         function swapData(){
             const holder = to.current.value;
@@ -57,7 +62,7 @@ const Translate = () => {
   
   return (
     <div>
-        <h1>Google Translate</h1>
+        <h1>Translation App</h1>
       <div className="container">
         <div>
             <select ref={from}>
@@ -76,7 +81,7 @@ const Translate = () => {
                     <option key={index} value={language.region}>{language.language}</option>
                 ))} 
             </select>
-            <textarea ref={toInput} placeholder="Translation" readOnly></textarea>
+            <textarea ref={toInput} placeholder={loading ? "Translating..." : "Translate"} readOnly></textarea>
         </div>
         <button onClick={getData}>Translate</button>
       </div>
