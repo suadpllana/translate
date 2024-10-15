@@ -43,13 +43,24 @@ border-radius: 20px;
     position: absolute;
     top: 0;
     cursor: pointer;
-    left: 48%;
+   left: 48%;
+}
+.container div {
+    position: relative;
+}
+.count{
+    position: absolute;
+    right: 0;
+    z-index: 2  ;
+    bottom: -50px;
 }
 @media (max-width: 767px){
     .container{
         width: 100%;
         margin-left: 0;
     }
+   
+    
 }
 @media (min-width: 768px) and (max-width: 1217px){
     .container{
@@ -57,4 +68,6 @@ border-radius: 20px;
         width: 60%;
         margin-left: 20%;
     }
+  
+  
 }

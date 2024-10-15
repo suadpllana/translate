@@ -8,6 +8,7 @@ const Translate = () => {
     const fromInput = useRef(null)
     const toInput = useRef(null) 
     const [loading , setLoading] = useState(false)
+    const [count , setCount] = useState(0)
    
         async function getData() {
             setLoading(true)
@@ -37,7 +38,7 @@ const Translate = () => {
                 console.error(error);
             }
         }
-
+    
 
 
       
@@ -53,26 +54,42 @@ const Translate = () => {
         }
 
     function enter(e){
+       if(count > 499){
+        alert("The maximum character input is 500!")
+        return
+       }
+        if(e.key === "Backspace"){
+            setCount(prev => prev - 1)
+            return
+        }
+    
+        
         if(e.key === "Enter"){
             e.preventDefault()
             getData()
+            return;
         }
-        return
+        
+        setCount(prev => prev + 1)
     }
-  
+ 
+
   return (
     <div>
         <h1>Translation App</h1>
       <div className="container">
         <div>
-            <select ref={from}>
+            <select ref={from} >
                 <option value="">Select a language</option>
                 {languageData.map((language, index) => (
                     <option key={index} value={language.region}>{language.language}</option>
                 ))}
             </select>
-            <textarea onKeyDown={(e) => enter(e)} ref={fromInput} placeholder="Enter Text"></textarea>
-            <svg onClick={swapData} className="swap" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"></path></svg>
+            <textarea onKeyDown={(e) => enter(e)} ref={fromInput} placeholder="Enter Text">
+          
+            </textarea>
+                <p className="count">{count}/500</p>
+           
         </div>
         <div>
         <select ref={to}>
@@ -82,8 +99,10 @@ const Translate = () => {
                 ))} 
             </select>
             <textarea ref={toInput} placeholder={loading ? "Translating..." : "Translate"} readOnly></textarea>
+           
         </div>
         <button onClick={getData}>Translate</button>
+        <svg onClick={swapData} className="swap" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"></path></svg>
       </div>
    
     </div>
