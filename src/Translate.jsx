@@ -77,7 +77,7 @@ const Translate = () => {
   return (
     <div>
         <h1 className="text-3xl text-white font-bold">Translation App</h1>
-      <div className=" container w-full md:w-[50%] md:ml-[25%] w-1/2 ml-1/4 bg-gray-400 rounded-2xl grid grid-cols-2 h-80 mt-8 gap-10 relative">
+      <div className=" container w-full md:w-[50%] md:ml-[25%] w-1/2 ml-1/4  rounded-2xl grid grid-cols-2 h-80 mt-8 gap-10 relative">
         <div className=" h-3/5 bg-wheat relative">
             <select className="w-full h-8 border-b border-black border-b-[1px]" ref={from} >
                 <option value="">Select a language</option>
@@ -101,7 +101,7 @@ const Translate = () => {
             <textarea className="w-[99%] h-full text-lg" ref={toInput} placeholder={loading ? "Translating..." : "Translate"} readOnly></textarea>
            
         </div>
-        <button className=" hover:opacity-70 absolute bottom-0 left-[15%] h-9 w-[70%] cursor-pointer text-lg bg-gray-600" onClick={getData}>Translate</button>
+        <button className=" hover:opacity-70 absolute bottom-0 left-[15%] h-9 w-[70%] cursor-pointer  " onClick={getData}>Translate</button>
         <svg onClick={swapData} className="absolute top-0 left-[48%] w-[30px] cursor-pointer" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"></path></svg>
       </div>
    
